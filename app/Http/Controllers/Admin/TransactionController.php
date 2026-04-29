@@ -5,13 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class EventsController extends Controller
+class TransactionController extends Controller
 {
-    public function indexAdmin(){
-        return view('admin.events');
-    }
-
-    public function transactionAdmin(){
+    public function index(){
         return view('admin.transactions');
     }
 }

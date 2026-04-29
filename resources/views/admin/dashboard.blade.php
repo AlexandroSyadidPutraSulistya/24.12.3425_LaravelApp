@@ -3,6 +3,8 @@
 @section ('content')
 
 <body class="bg-slate-50 text-slate-900 flex min-h-screen">
+<header class="flex justify-between items-center mb-10">
+    </header>
 
 
 <!-- Stats Grid -->

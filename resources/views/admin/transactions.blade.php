@@ -1,6 +1,8 @@
 @extends ('layouts.admin')
 
 @section ('content')
+@section ('page_title', 'Laporan')
+@section ('page_subtitle', 'Pantau arus kas dan penjualan tiket anda.')
 
 <body class="bg-slate-50 text-slate-900 flex min-h-screen">
 
@@ -10,7 +12,7 @@
                 <h1 class="text-3xl font-black">Laporan Transaksi</h1>
                 <p class="text-slate-500 font-medium">Pantau arus kas dan penjualan tiket Anda.</p>
             </div>
-            <div class="flex gap-4">
+            <div class="flex gap-">
                 <button
                     class="px-6 py-3 border-2 border-slate-200 rounded-2xl font-bold hover:bg-white hover:border-indigo-600 hover:text-indigo-600 transition">
                     Ekspor Excel
