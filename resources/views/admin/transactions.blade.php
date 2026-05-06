@@ -1,28 +1,10 @@
-@extends ('layouts.admin')
+@extends('layouts.admin')
+@section('title', 'Laporan Transaksi - Admin')
+@section('page_title', 'Laporan Transaksi')
+@section('page_subtitle', 'Pantau arus kas dan penjualan tiket Anda.')
 
-@section ('content')
-@section ('page_title', 'Laporan')
-@section ('page_subtitle', 'Pantau arus kas dan penjualan tiket anda.')
+@section('content')
 
-<body class="bg-slate-50 text-slate-900 flex min-h-screen">
-
-<main class="flex-1 p-10 overflow-y-auto">
-        <header class="flex justify-between items-center mb-10">
-            <div>
-                <h1 class="text-3xl font-black">Laporan Transaksi</h1>
-                <p class="text-slate-500 font-medium">Pantau arus kas dan penjualan tiket Anda.</p>
-            </div>
-            <div class="flex gap-">
-                <button
-                    class="px-6 py-3 border-2 border-slate-200 rounded-2xl font-bold hover:bg-white hover:border-indigo-600 hover:text-indigo-600 transition">
-                    Ekspor Excel
-                </button>
-                <button
-                    class="px-6 py-3 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg hover:bg-indigo-700 transition">
-                    Unduh PDF
-                </button>
-            </div>
-        </header>
 
         <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
             <div class="px-8 py-6 bg-slate-50/50 border-b flex flex-wrap gap-4 items-center">
@@ -146,8 +128,4 @@
                 </div>
             </div>
         </div>
-    </main>
-
-</body>
-
 @endsection
