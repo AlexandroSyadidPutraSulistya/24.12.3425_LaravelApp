@@ -24,6 +24,7 @@
                     <th class="px-8 py-4">Logo</th>
                     <th class="px-8 py-4">Nama Partner</th>
                     <th class="px-8 py-4">URL Logo</th>
+                    <th class="px-8 py-4">Di Buat</th>
                     <th class="px-8 py-4">Aksi</th>
                 </tr>
             </thead>
@@ -59,6 +60,12 @@
                     <td class="px-8 py-6">
                         <p class="text-sm text-indigo-600 font-semibold break-all">
                             {{ $partner->logo_url }}
+                        </p>
+                    </td>
+
+                    <td class="px-8 py-6">
+                        <p class="text-sm text-indigo-600 font-semibold break-all">
+                            {{ $partner->created_at->format('d M Y') }}
                         </p>
                     </td>
 
