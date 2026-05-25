@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Partner;
 
 
-class HomeController extends Controller
+class WelcomeController extends Controller
 {
     public function index(Request $request)
 {
