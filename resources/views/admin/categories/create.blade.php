@@ -6,8 +6,8 @@
 
 @section('content')
 
-<div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm max-w-2xl">
-
+<div class="max-w-3xl mx-auto">
+    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
     <form action="{{ route('admin.categories.store') }}"
           method="POST"
           class="space-y-6">
@@ -53,7 +53,7 @@
         </div>
 
     </form>
-
+    </div>
 </div>
 
 @endsection

@@ -4,7 +4,8 @@
 @section('page_subtitle', 'Masukkan detail acara baru yang akan diselenggarakan.')
 
 @section('content')
-<div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm max-w-3xl">
+<div class="max-w-3xl mx-auto">
+    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
     <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
         @csrf
         <div>
@@ -61,5 +62,6 @@
             <button type="submit" class="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition">Simpan Event</button>
         </div>
     </form>
+    </div>
 </div>
 @endsection

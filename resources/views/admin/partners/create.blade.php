@@ -6,7 +6,8 @@
 
 @section('content')
 
-<div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm max-w-3xl">
+<div class="max-w-3xl mx-auto">
+    <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
 
     <form action="{{ url('/admin/partners/store') }}" 
           method="POST" 
@@ -91,7 +92,7 @@
         </div>
 
     </form>
-
+    </div>
 </div>
 
 <!-- Script Preview Logo -->
