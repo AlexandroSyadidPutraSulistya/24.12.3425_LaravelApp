@@ -22,16 +22,17 @@ Route::get('/my-ticket', [EventController::class, 'ticket'])->name('ticket');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index'); 
+Route::resource('categories', CategoryController::class);
 Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
 Route::get('/partners/create', [PartnerController::class, 'create']);
 Route::post('/partners/store', [PartnerController::class, 'store']);
 Route::delete('/partners/{id}', [PartnerController::class, 'destroy'])->name('partners.destroy');
 Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
 Route::put('/partners/{id}', [PartnerController::class, 'update'])->name('partners.update');
-});
-
-Route::prefix('admin')->name('admin.')->group(function () {
 Route::resource('events', EventAdminController::class);
-
 });
+
+// Route::prefix('admin')->name('admin.')->group(function () {
+
+
+// });

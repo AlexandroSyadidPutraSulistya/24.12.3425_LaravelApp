@@ -96,9 +96,55 @@
                 </div>
             </div>
             @endforeach
-
-
     </section>
+
+            <!-- PARTNER SECTION -->
+        <section class="py-20 bg-white border-t border-slate-100">
+
+            <div class="max-w-7xl mx-auto px-6">
+
+                <!-- Header -->
+                <div class="text-center mb-14">
+
+                    <p class="text-xs font-bold tracking-[0.3em] uppercase text-slate-400 mb-3">
+                        Trusted Partners
+                    </p>
+
+                    <h2 class="text-xl md:text-2xl font-black text-slate-900">
+                        Didukung Oleh Partner & Sponsor Terpercaya
+                    </h2>
+
+                    <p class="mt-3 text-sm text-slate-500 max-w-xl mx-auto leading-relaxed">
+                        Bersama berbagai perusahaan, komunitas, dan organisasi terbaik
+                        untuk menghadirkan pengalaman event yang lebih profesional.
+                    </p>
+
+                </div>
+
+                <!-- Logo Grid -->
+                <div class="flex flex-wrap items-center justify-center gap-x-8 md:gap-x-12 gap-y-6">
+
+                    @forelse($partners as $partner)
+
+                        <div class="flex items-center justify-center">
+                            <img src="{{ $partner->logo_url }}" alt="{{ $partner->name }}" title="{{ $partner->name }}" class="h-10 md:h-12 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition duration-300 ease-in-out">
+                        </div>
+
+                    @empty
+
+                        <div class="text-center text-slate-400 py-10">
+
+                            Belum ada partner tersedia.
+
+                        </div>
+
+                    @endforelse
+
+                </div>
+
+            </div>
+
+        </section>
 
 </body>
 
