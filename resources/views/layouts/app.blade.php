@@ -61,7 +61,6 @@
                 <ul class="space-y-4">
                 @foreach($categories as $cat)
                     <li><a href="/?category={{ $cat->slug }}" class="hover:text-white transition">{{ $cat->name }}</a></li>
-                    
                 @endforeach
                 </ul>
             </div>
