@@ -1,38 +1,54 @@
 <?php
-
-use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\EventController as EventAdminController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\EventController as EventAdminController;
 use App\Http\Controllers\Admin\PartnerController;
 
-// Route User Area
 
-Route::get('/', [WelcomeController::class, 'index'])->name('home');
+// Rute Admin Area
+Route::prefix('admin')->name('admin.')->group(function () {
 
-Route::get('/event/1', [EventController::class, 'show'])->name('events.show');
-Route::get('/checkout', [EventController::class, 'checkout'])->name('checkout');
-Route::get('/my-ticket', [EventController::class, 'ticket'])->name('ticket');
+    Route::get('/', function () {
 
-// Route Admin Area
+        if (auth()->check()) {
+            return redirect()->route('admin.dashboard');
+        }
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
-Route::resource('categories', CategoryController::class);
-Route::get('/partners', [PartnerController::class, 'index'])->name('partners.index');
-Route::get('/partners/create', [PartnerController::class, 'create']);
-Route::post('/partners/store', [PartnerController::class, 'store']);
-Route::delete('/partners/{id}', [PartnerController::class, 'destroy'])->name('partners.destroy');
-Route::get('/partners/{id}/edit', [PartnerController::class, 'edit'])->name('partners.edit');
-Route::put('/partners/{id}', [PartnerController::class, 'update'])->name('partners.update');
-Route::resource('events', EventAdminController::class);
+        return redirect()->route('admin.login');
+    });
+
+    Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('login', [AuthController::class, 'login'])->name('login.post');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+
+        Route::get('dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
+
+        Route::resource('events', EventAdminController::class);
+        Route::resource('categories', CategoryController::class);
+        Route::resource('partners', PartnerController::class);
+
+        Route::get('transactions', [TransactionController::class, 'index'])
+            ->name('transactions.index');
+    });
 });
 
-// Route::prefix('admin')->name('admin.')->group(function () {
 
+// Rute User Area
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::get('/event/{id}', [EventController::class,'show'])->name('events.show');
+Route::get('/checkout', [EventController::class,'checkout'])->name('checkout');
+Route::get('/my-ticket', [TicketController::class, 'show'])->name('ticket');
 
-// });
+Route::get('/bantuan', [WelcomeController::class, 'bantuan'])->name('bantuan');
+Route::get('/contact', [WelcomeController::class, 'contact'])->name('contact');
+Route::get('/profil', [WelcomeController::class, 'profil'])->name('profil');
+Route::get('/katalog', [WelcomeController::class, 'katalog'])->name('katalog');
