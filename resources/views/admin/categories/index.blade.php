@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title', 'Kelola Partner - Admin')
-@section('page_title', 'Kelola Partner')
-@section('page_subtitle', 'Atur daftar partner dan sponsor event Anda.')
+@section('title', 'Kelola Kategori - Admin')
+@section('page_title', 'Kelola Kategori')
+@section('page_subtitle', 'Atur kategori event yang tersedia.')
 
 @section('content')
 
@@ -11,7 +11,7 @@
 
     <!-- Search -->
     <form method="GET"
-          action="{{ route('admin.partners.index') }}"
+          action="{{ route('admin.categories.index') }}"
           class="w-full md:max-w-md">
 
         <div class="relative">
@@ -19,7 +19,7 @@
             <input type="text"
                    name="search"
                    value="{{ request('search') }}"
-                   placeholder="Cari partner..."
+                   placeholder="Cari kategori..."
                    class="w-full px-5 py-4 pr-12 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-600 outline-none transition font-medium shadow-sm">
 
             <button type="submit"
@@ -45,10 +45,10 @@
     </form>
 
     <!-- Button -->
-    <a href="{{ url('/admin/partners/create') }}"
+    <a href="{{ route('admin.categories.create') }}"
        class="inline-flex items-center justify-center px-6 py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-lg shadow-indigo-100 hover:bg-indigo-700 active:scale-95 transition whitespace-nowrap">
 
-        + Tambah Partner Baru
+        + Tambah Kategori
 
     </a>
 
@@ -65,10 +65,9 @@
 
                 <tr>
                     <th class="px-8 py-4 w-16">No</th>
-                    <th class="px-8 py-4">Logo</th>
-                    <th class="px-8 py-4">Nama Partner</th>
-                    <th class="px-8 py-4">URL Logo</th>
-                    <th class="px-8 py-4">Di Buat</th>
+                    <th class="px-8 py-4">Nama Kategori</th>
+                    <th class="px-8 py-4">Slug</th>
+                    <th class="px-8 py-4">Dibuat</th>
                     <th class="px-8 py-4">Aksi</th>
                 </tr>
 
@@ -76,48 +75,37 @@
 
             <tbody class="divide-y border-t">
 
-                @forelse($partners as $index => $partner)
+                @forelse($categories as $index => $category)
 
                 <tr class="hover:bg-slate-50/50 transition">
 
                     <td class="px-8 py-6 font-bold text-slate-400">
-                        {{ $partners->firstItem() + $index }}
-                    </td>
-
-                    <td class="px-8 py-6">
-
-                        <img src="{{ $partner->logo_url }}"
-                             class="w-16 h-16 rounded-2xl object-cover border shadow-sm">
-
+                        {{ $categories->firstItem() + $index }}
                     </td>
 
                     <td class="px-8 py-6">
 
                         <p class="font-black text-slate-800">
-                            {{ $partner->name }}
+                            {{ $category->name }}
                         </p>
 
                         <p class="text-xs text-slate-400">
-                            Partner Event
+                            Kategori Event
                         </p>
 
                     </td>
 
                     <td class="px-8 py-6">
 
-                        <a href="{{ $partner->logo_url }}"
-                           target="_blank"
-                           class="text-indigo-600 font-bold hover:underline">
-
-                            Logo
-
-                        </a>
+                        <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold">
+                            {{ $category->slug }}
+                        </span>
 
                     </td>
 
                     <td class="px-8 py-6 text-indigo-600 font-semibold">
 
-                        {{ $partner->created_at->format('d M Y') }}
+                        {{ $category->created_at->format('d M Y') }}
 
                     </td>
 
@@ -126,7 +114,7 @@
                         <div class="flex gap-2">
 
                             <!-- Edit -->
-                            <a href="{{ route('admin.partners.edit', $partner->id) }}"
+                            <a href="{{ route('admin.categories.edit', $category->id) }}"
                                class="p-2.5 bg-indigo-50 text-indigo-600 rounded-xl hover:bg-indigo-600 hover:text-white transition">
 
                                 <svg class="w-5 h-5"
@@ -145,9 +133,9 @@
                             </a>
 
                             <!-- Delete -->
-                            <form action="{{ route('admin.partners.destroy', $partner->id) }}"
+                            <form action="{{ route('admin.categories.destroy', $category->id) }}"
                                   method="POST"
-                                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus partner ini?');">
+                                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori ini?');">
 
                                 @csrf
                                 @method('DELETE')
@@ -181,12 +169,14 @@
                 @empty
 
                 <tr>
-                    <td colspan="6"
+
+                    <td colspan="5"
                         class="px-8 py-10 text-center text-slate-500">
 
-                        Belum ada partner.
+                        Belum ada kategori.
 
                     </td>
+
                 </tr>
 
                 @endforelse
@@ -198,7 +188,7 @@
     </div>
 
     <div class="px-8 py-6 bg-slate-50/50 border-t">
-        {{ $partners->appends(request()->query())->links() }}
+        {{ $categories->appends(request()->query())->links() }}
     </div>
 
 </div>
