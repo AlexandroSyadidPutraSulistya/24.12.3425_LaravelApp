@@ -45,7 +45,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Rute User Area
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('/event/{id}', [EventController::class,'show'])->name('events.show');
-Route::get('/checkout', [EventController::class,'checkout'])->name('checkout');
+Route::get('/checkout/{event}', [App\Http\Controllers\CheckoutController::class, 'create'])->name('checkout.create');
+Route::post('/checkout/{event}', [App\Http\Controllers\CheckoutController::class, 'store'])->name('checkout.store');
 Route::get('/my-ticket', [TicketController::class, 'show'])->name('ticket');
 
 Route::get('/bantuan', [WelcomeController::class, 'bantuan'])->name('bantuan');
