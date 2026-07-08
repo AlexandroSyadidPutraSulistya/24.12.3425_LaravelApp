@@ -35,7 +35,7 @@
              },
              // Optional
              onPending: function(result){
-                 window.location.href = "{{ route('checkout.success', $transaction->order_id) }}";
+                alert('Menunggu pembayaran...');
              },
              // Optional
              onError: function(result){

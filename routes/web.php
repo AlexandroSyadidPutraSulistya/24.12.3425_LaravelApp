@@ -50,6 +50,7 @@ Route::post('/checkout/{event}', [App\Http\Controllers\CheckoutController::class
 Route::get('/payment/{order_id}', [\App\Http\Controllers\CheckoutController::class, 'payment'])->name('checkout.payment');
 Route::get('/success/{order_id}', [\App\Http\Controllers\CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/my-ticket', [TicketController::class, 'show'])->name('ticket');
+Route::post('/midtrans/callback', [\App\Http\Controllers\MidtransWebhookController::class, 'handle']);
 
 Route::get('/bantuan', [WelcomeController::class, 'bantuan'])->name('bantuan');
 Route::get('/contact', [WelcomeController::class, 'contact'])->name('contact');
